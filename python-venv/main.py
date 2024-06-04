@@ -10,7 +10,7 @@ TEST_ENV: str = os.environ.get("TEST_ENV")
  
 if TEST_ENV == "":
     # dotenvのimprotに失敗していればこちらが出力されます。
-    print("TEST_ENV not read")
+    print("TEST_ENV is empty")
 else:
     # dotenvのimprotに成功し「.test.env」の環境変数が読み込めていればこちらが出力されます。
     print(TEST_ENV)
