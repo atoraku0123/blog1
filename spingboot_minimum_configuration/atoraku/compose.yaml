@@ -1,0 +1,53 @@
+#Connection url for connection in the DatabaseView:
+#  jdbc:mysql://0.0.0.0:13306/DOCKERDB, login=root, password=root
+#App is available at: http://localhost:<local-port>/entitybus/post
+networks:
+  testnetwork:
+services:
+  java:
+    build:
+      context: .
+      target: local
+    container_name: spring-rest-api
+    networks:
+      - testnetwork
+    tty: true
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+  db:
+    image: mysql:9.0.0
+    container_name: testdb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: CAKE_SHOP
+    volumes:
+      - ./db-init-scripts:/docker-entrypoint-initdb.d
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysql",
+          "-h",
+          "localhost",
+          "-P",
+          "3306",
+          "-u",
+          "root",
+          "--password=root",
+          "-e",
+          "select 1",
+          "TEST_DB"
+        ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    networks:
+      - testnetwork
