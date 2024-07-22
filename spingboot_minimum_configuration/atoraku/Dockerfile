@@ -3,9 +3,9 @@ FROM amazoncorretto:22-jdk as local
 
 WORKDIR /app
 
-# コンテナ内で ./gradlew コマンドを実行するために必要
-RUN yum install -y findutils
-
+# findutils: コンテナ内で ./gradlew コマンドを実行するために必要
+# tar, gzip: dev container接続に必要 
+RUN yum install -y findutils tar gzip 
 
 FROM amazoncorretto:22-jdk as release
 
