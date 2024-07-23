@@ -15,7 +15,6 @@ services:
     working_dir: /app
     ports:
       - "8080:8080"
-      - "5050:5050" # デバッグ用ポート
     depends_on:
       - db
     volumes:
@@ -31,24 +30,5 @@ services:
     volumes:
       - ./db-init-scripts:/docker-entrypoint-initdb.d
     restart: always
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "mysql",
-          "-h",
-          "localhost",
-          "-P",
-          "3306",
-          "-u",
-          "root",
-          "--password=root",
-          "-e",
-          "select 1",
-          "TEST_DB"
-        ]
-      interval: 1s
-      timeout: 3s
-      retries: 30
     networks:
       - testnetwork
