@@ -4,7 +4,7 @@
 networks:
   testnetwork:
 services:
-  spring-rest-api:
+  java:
     build:
       context: .
       target: local
@@ -27,6 +27,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: CAKE_SHOP
+      MYSQL_USER: atrk
+      MYSQL_PASSWORD: atrk1234
     volumes:
       - ./db-init-scripts:/docker-entrypoint-initdb.d
     restart: always

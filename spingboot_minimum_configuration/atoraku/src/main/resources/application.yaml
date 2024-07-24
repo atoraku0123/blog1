@@ -3,8 +3,8 @@ spring:
     name: atoraku
   datasource:
     url: jdbc:mysql://testdb:3306/CAKE_SHOP
-    username: root
-    password: root
+    username: atrk
+    password: atrk1234
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     properties:
