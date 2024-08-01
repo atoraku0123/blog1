@@ -2,10 +2,10 @@ spring:
   application:
     name: atoraku
   datasource:
-    url: jdbc:mysql://testdb:3306/CAKE_SHOP
-    username: atrk
-    password: atrk1234
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://db:3306/shop
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:
